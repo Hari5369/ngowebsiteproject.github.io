@@ -28,8 +28,6 @@
         nav ul li {
             display: inline;
             margin: 0 10px;
-            display: inline;
-            margin: 0 10px;
             border: solid;
             border-radius: 5px;
             padding-top: 5px;
@@ -38,7 +36,6 @@
             padding-left: 2px;
             border-color: #50b3a2;
             border-width: thin;
-
         }
 
         nav ul li a {
@@ -91,8 +88,6 @@
             position: fixed;
             width: 100%;
             bottom: 0;
-            padding-top: 0px;
-            padding-bottom: 0px;
         }
         .logo {
             width: 130px;
@@ -104,40 +99,8 @@
             border-radius: 50px;
             border-color:#50b3a2;
         }
-        nav ul li:hover{
+        nav ul li:hover {
             background-color: rgba(0, 0, 0, 0.1);
-            box-shadow: #333;
-
-        }
-        @media (max-width: 768px) {
-            section {
-                width: 90%;
-                padding: 1rem;
-            }
-
-            nav ul li {
-                display: block;
-                margin: 0.5rem 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 0.5rem 0;
-            }
-
-            nav ul {
-                text-align: center;
-            }
-
-            section {
-                width: 100%;
-                margin: 1rem 0;
-            }
-
-            .logo {
-                width: 100px;
-            }
         }
     </style>
 </head>
@@ -148,7 +111,7 @@
         <p style="font-size: 25px;color:black;font-weight: bold;font-style: italic;"><span style="color: white;">"</span>Empowering Futures, One Hope at a Time<span style="color: white;">"</span></p>
         <nav>
             <ul>
-                <li><a href="homepage.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="aboutus.html">About Us</a></li>
                 <li><a href="donate.html">Donate</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
@@ -161,14 +124,14 @@
     <section id="volunteer">
         <h2 style="font-family: 'Times New Roman', Times, serif;font-size: 60px;text-decoration: double;color: #50b3a2;">Volunteer</h2><hr>
         <p style="font-size: 18px;">We equip East-Of-Bayshore youth to grow spiritually, gain life skills and develop as leaders so that they have a hope and a future.</p>
-        <form>
-            <label for="vol-name"style="font-family: 'Times New Roman', Times, serif;font-size: 25px;text-decoration: double;color: #50b3a2;">Name:</label>
+        <form id="volunteerForm">
+            <label for="vol-name" style="font-family: 'Times New Roman', Times, serif;font-size: 25px;text-decoration: double;color: #50b3a2;">Name:</label>
             <input type="text" id="vol-name" name="vol-name" required>
-            <label for="vol-email"style="font-family: 'Times New Roman', Times, serif;font-size: 25px;text-decoration: double;color: #50b3a2;">Email:</label>
+            <label for="vol-email" style="font-family: 'Times New Roman', Times, serif;font-size: 25px;text-decoration: double;color: #50b3a2;">Email:</label>
             <input type="email" id="vol-email" name="vol-email" required>
-            <label for="interest"style="font-family: 'Times New Roman', Times, serif;font-size: 25px;text-decoration: double;color: #50b3a2;">Areas of Interest:</label>
+            <label for="interest" style="font-family: 'Times New Roman', Times, serif;font-size: 25px;text-decoration: double;color: #50b3a2;">Areas of Interest:</label>
             <input type="text" id="interest" name="interest" required>
-            <label for="availability"style="font-family: 'Times New Roman', Times, serif;font-size: 25px;text-decoration: double;color: #50b3a2;">Availability:</label>
+            <label for="availability" style="font-family: 'Times New Roman', Times, serif;font-size: 25px;text-decoration: double;color: #50b3a2;">Availability:</label>
             <input type="text" id="availability" name="availability" required>
             <button type="submit">Register</button><br><br><br><br>
         </form>
@@ -177,5 +140,33 @@
     <footer>
         <p>&copy; 2025 Hope Horizon. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.getElementById("volunteerForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("vol-name").value.trim();
+            const email = document.getElementById("vol-email").value.trim();
+            const interest = document.getElementById("interest").value.trim();
+            const availability = document.getElementById("availability").value.trim();
+
+            if (!name || !email || !interest || !availability) {
+                alert("Please fill out all fields.");
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+
+            alert("Thank you for registering as a volunteer!");
+        });
+
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+    </script>
 </body>
 </html>
